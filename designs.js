@@ -8,32 +8,43 @@ const sizePicker = document.getElementById("sizePicker");
 const canvas = document.getElementById("pixelCanvas");
 
 sizePicker.addEventListener('submit', e => {
-    e.preventDefault(); // prevent
-    height = inputHeight.value; // height
+    // prevent Default action of submit button
+    e.preventDefault(); 
+    height = inputHeight.value; // height 
     width = inputWidth.value; // width
-    makeGrid(height, width);
-    // console.log(height, width);
-})
+    // make grid function call
+    makeGrid(height, width); 
+});
 
 // When size is submitted by the user, call makeGrid()
 
-function makeGrid(r, c) {
-    // Your code goes here!
-    let removeRow = document.querySelectorAll('tbody');
 
+/**
+ * @param {row} row - number of rows to submit 
+ * @param {col} col - number of columns to submit 
+ */
+function makeGrid(row, col) {
+    // Your code goes here!
+
+    // When size is changed to fit the new size then remove the previous grid
+    let removeRow = document.querySelectorAll('tbody');
     if (removeRow.length > 0) {
       removeRow.forEach(row => {
           row.remove();
-        })      
-    }
+        });  
+    };
     
-    for (var i = 1; i <= r; i++){
+    // Remove all rows from the table that have been removed from the DOM 
+    // and then create new rows    
+    for (var i = 1; i <= row; i++){
         var tableRow = '<tr id=table'+i +'></tr>'
         canvas.insertAdjacentHTML("beforeend", tableRow);
-        for (var j = 1; j <= c; j++) {                                              
+        for (var j = 1; j <= col; j++) {                                              
             document.querySelector('#table' + i).insertAdjacentHTML("beforeend", '<td></td>');
         }
     }
+
+    // add color to cell
     let cells = document.querySelectorAll('td');
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
