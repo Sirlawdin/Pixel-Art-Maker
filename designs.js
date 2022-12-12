@@ -12,17 +12,18 @@ sizePicker.addEventListener('submit', e => {
     e.preventDefault(); 
     height = inputHeight.value; // height 
     width = inputWidth.value; // width
-    // make grid function call
+    // When size is submitted by the user, call makeGrid()
     makeGrid(height, width); 
 });
 
-// When size is submitted by the user, call makeGrid()
 
 
 /**
- * @param {row} row - number of rows to submit 
- * @param {col} col - number of columns to submit 
- */
+  * @desc create a grid of squares 
+  * @param int $row - number of squares representing the width of the grid
+  * @param int $col - number of squares representing the height of the grid
+*/
+// make grid function
 function makeGrid(row, col) {
     // Your code goes here!
 
@@ -49,7 +50,6 @@ function makeGrid(row, col) {
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
             color = document.querySelector('#colorPicker');
-            // console.log(color.value);
             if (cell.hasAttributes('style')) {
                 cell.removeAttribute('style');
             } else {
@@ -58,3 +58,10 @@ function makeGrid(row, col) {
         })
     })
 };
+
+
+// Fibonnaci series
+
+for (var i = 0; i < 10; i++) {
+    console.log(fib(i));
+    }
